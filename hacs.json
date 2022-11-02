@@ -1,6 +1,6 @@
 {
   "name": "Google Keep (Sync)",
   "render_readme": true,
-  "country": "US",
+  "homeassistant": "2022.10.4",
   "iot_class": "Cloud Push"
 }
