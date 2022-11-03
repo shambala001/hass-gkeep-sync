@@ -1,5 +1,5 @@
 {
-  "domain": "gkeep",
+  "domain": "gkeep_sync",
   "name": "Google Keep (Sync)",
   "documentation": "https://github.com/owenvoke/hass-google_keep",
   "dependencies": [],
