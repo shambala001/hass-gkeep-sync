@@ -4,7 +4,7 @@ Custom component for [Home Assistant](https://home-assistant.io) to enable addin
 
 ## Installation
 
-Add the `gkeep` folder and its contents to the `custom_components` folder in your Home Assistant configuration directory, and add the `gkeep` component to your `configuration.yaml` file.
+Add the `gkeep_sync` folder and its contents to the `custom_components` folder in your Home Assistant configuration directory, and add the `gkeep_sync` component to your `configuration.yaml` file.
 
 ### Example `configuration.yaml` entry
 
@@ -27,7 +27,7 @@ The original intended use of this component was to restore the capability of Goo
 
 ### Home Assistant service
 
-With this custom component loaded, a service called `gkeep.add_to_list` is available.
+With this custom component loaded, a service called `gkeep_sync.add_to_list` is available.
 
 #### Add to List
 
@@ -46,7 +46,7 @@ automation:
         - sensor.bedroom_sensor_battery
         below: 20
     action:
-      service: gkeep.add_to_list
+      service: gkeep_sync.add_to_list
       data:
         name: 'Home Supplies'
         items: 'Batteries for {{ trigger.to_state.name }}.'
