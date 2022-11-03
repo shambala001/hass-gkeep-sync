@@ -23,19 +23,18 @@ This component relies on [gkeepapi](https://github.com/kiwiz/gkeepapi), an unoff
 
 ## Usage
 
-The original intended use of this component was to restore the capability of Google Assistant to add things to Google Keep lists.
-I accomplish this with a combination of this custom component running on Home Assistant and [IFTTT](https://ifttt.com/).
+The original intended use of this component was to restore the capability of Google Assistant to add items to Google Keep lists.
 
 ### Home Assistant service
 
-With this custom component loaded, two services named `gkeep.add_to_list` and `gkeep.sync_shopping_list` are available.
+With this custom component loaded, a service called `gkeep.add_to_list` is available.
 
 #### Add to List
 
-This service call has two data inputs: `title` and `things`, where `title` is the title of the Google Keep list to update, and `things` is a either a list or string of things to add to the list.
-A string input for `things` is parsed for multiple things separated by 'and' and/or commas.
+This service call has two data inputs: `name` and `items`, where `name` is the name of the Google Keep list to update, and `items` is a either a list or string of items to add to the list.
+A string input for `items` is parsed for multiple items separated by 'and' and/or commas.
 
-Here is an example of using the service in an automation to add batteries for smart home devices to a list titled "Home Supplies":
+Here is an example of using the service in an automation to add batteries for smart home devices to a list named "Home Supplies":
 ```yaml
 automation:
   - alias: Low Battery Notification
@@ -49,6 +48,6 @@ automation:
     action:
       service: gkeep.add_to_list
       data:
-        title: 'Home Supplies'
-        things: 'Batteries for {{ trigger.to_state.name }}.'
+        name: 'Home Supplies'
+        items: 'Batteries for {{ trigger.to_state.name }}.'
 ```

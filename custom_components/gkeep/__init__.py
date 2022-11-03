@@ -10,8 +10,8 @@ gkeep_sync:
   password: 'this_is_my_Google_App_password'
 
 With this custom component loaded, a new service named google_keep.add_to_list
-is available. This service data call has two inputs: 'title' and 'items', where
-'title' is the title of the Google Keep list, and 'items' is a either a list of
+is available. This service data call has two inputs: 'name' and 'items', where
+'name' is the name of the Google Keep list, and 'items' is a either a list of
 items, or a string. A string input for 'items' is parsed for multiple items
 separated by 'and'.
 """
@@ -29,7 +29,7 @@ _LOGGER = logging.getLogger(__name__)
 DOMAIN = "gkeep_sync"
 CONF_USERNAME = 'username'  # Google account username
 CONF_PASSWORD = 'password'  # Google App password, https://myaccount.google.com/apppasswords
-CONF_LIST_NAME = 'list_name'  # Default Google Keep list title
+CONF_LIST_NAME = 'list_name'  # Default Google Keep list name
 DEFAULT_LIST_NAME = 'Food Shopping'
 
 CONFIG_SCHEMA = vol.Schema({
@@ -41,8 +41,8 @@ CONFIG_SCHEMA = vol.Schema({
 }, extra=vol.ALLOW_EXTRA)
 
 # Service constants and validation
-SERVICE_LIST_NAME = 'name'  # Title of the Google Keep list to create or update, string
-SERVICE_LIST_ITEM = 'items'  # items(s) to add to the list
+SERVICE_LIST_NAME = 'name'  # Name of the Google Keep list to create or update, string
+SERVICE_LIST_ITEM = 'items'  # Items(s) to add to the list
 
 SERVICE_LIST_SCHEMA = vol.Schema({
     vol.Optional(SERVICE_LIST_NAME): cv.string,
