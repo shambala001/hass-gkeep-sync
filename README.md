@@ -10,9 +10,9 @@ Add the `gkeep_sync` folder and its contents to the `custom_components` folder i
 
 ```yaml
 gkeep_sync:
-  username: 'this_is_my_username@gmail.com'
-  password: 'this_is_my_Google_App_password'
-  list_name: 'Food Shopping'
+  username: !secret google_keep_email
+  password: !secret google_keep_password
+  list_name: 'Food Shopping' # Optional
 ```
 
 `list_name` is an optional configuration key that sets a default name for the Keep list to update.
