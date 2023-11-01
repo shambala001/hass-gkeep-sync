@@ -1,6 +1,5 @@
 {
   "name": "Google Keep (Sync)",
   "render_readme": true,
-  "homeassistant": "2023.11.0",
-  "iot_class": "cloud_push"
+  "homeassistant": "2023.11.0"
 }

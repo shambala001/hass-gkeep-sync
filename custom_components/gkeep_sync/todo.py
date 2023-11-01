@@ -22,8 +22,8 @@ from .coordinator import TaskUpdateCoordinator
 SCAN_INTERVAL = timedelta(minutes=15)
 
 TODO_STATUS_MAP = {
-    "needsAction": TodoItemStatus.NEEDS_ACTION,
-    "completed": TodoItemStatus.COMPLETED,
+    False: TodoItemStatus.NEEDS_ACTION,
+    True: TodoItemStatus.COMPLETED,
 }
 TODO_STATUS_MAP_INV = {v: k for k, v in TODO_STATUS_MAP.items()}
 
