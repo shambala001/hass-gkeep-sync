@@ -1,7 +1,6 @@
 """Google Keep todo platform."""
 from __future__ import annotations
 
-from datetime import timedelta
 from typing import cast
 
 from homeassistant.components.todo import (
@@ -18,8 +17,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from .api import AsyncConfigEntryAuth
 from .const import DOMAIN
 from .coordinator import TaskUpdateCoordinator
-
-SCAN_INTERVAL = timedelta(minutes=15)
 
 TODO_STATUS_MAP = {
     False: TodoItemStatus.NEEDS_ACTION,

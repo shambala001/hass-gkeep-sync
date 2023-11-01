@@ -2,14 +2,14 @@
 
 import logging
 
-import gkeepapi
+from gkeepapi import Keep
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, Platform
 
 from homeassistant.core import HomeAssistant
 
 from . import api
-from custom_components.gkeep_sync.const import (
+from .const import (
     CONF_LIST_NAME,
     DOMAIN,
     DEFAULT_LIST_NAME,
@@ -26,7 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Google Tasks from a config entry."""
     hass.data.setdefault(DOMAIN, {})
 
-    keep: gkeepapi.Keep = gkeepapi.Keep()
+    keep: Keep = Keep()
 
     auth = api.AsyncConfigEntryAuth(
         hass, keep, email=entry.data[CONF_EMAIL], password=entry.data[CONF_PASSWORD]

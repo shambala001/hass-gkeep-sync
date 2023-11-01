@@ -26,7 +26,7 @@ class TaskUpdateCoordinator(DataUpdateCoordinator[list[dict[str, Any]]]):
         super().__init__(
             hass,
             _LOGGER,
-            name=f"Google Keep {task_list_name}",
+            name=f"Google Keep ({task_list_name})",
             update_interval=UPDATE_INTERVAL,
         )
         self.api = api
