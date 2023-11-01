@@ -1,9 +1,0 @@
-add_to_list:
-  description: Add items to a Google Keep list.
-  fields:
-    name:
-      description: Name of the Google Keep list to create or update
-      example: 'Food Shopping'
-    items:
-      description: Item(s) to add to the list
-      example: 'Coffee Beans'
