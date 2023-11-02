@@ -55,8 +55,6 @@ class AsyncConfigEntryAuth:
             lambda: service.all()
         )
 
-        _LOGGER.debug("Found %s notes", len(keep_notes))
-
         for note in keep_notes:
             if note.type == NodeType.List:
                 lists.append({"id": note.title, "title": note.title})
@@ -96,7 +94,9 @@ class AsyncConfigEntryAuth:
         else:
             list_to_update.add(item, False)
 
-        service.sync()
+        await self._hass.async_add_executor_job(
+            lambda: service.sync()
+        )
 
     async def patch(
         self,
@@ -115,7 +115,9 @@ class AsyncConfigEntryAuth:
                 old_item.checked = task["status"] or False
                 break
 
-        service.sync()
+        await self._hass.async_add_executor_job(
+            lambda: service.sync()
+        )
 
     async def _get_or_create_list_name(self, list_name: str, service: Keep | None = None) -> List:
         """Find the target list amongst all the Keep notes/lists"""
