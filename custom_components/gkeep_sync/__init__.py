@@ -15,6 +15,7 @@ from .const import (
     DEFAULT_LIST_NAME,
     SERVICE_LIST_NAME,
     SERVICE_LIST_ITEMS,
+    CONF_MASTER_TOKEN,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -29,7 +30,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     keep: Keep = Keep()
 
     auth = api.AsyncConfigEntryAuth(
-        hass, keep, email=entry.data[CONF_EMAIL], password=entry.data[CONF_PASSWORD]
+        hass,
+        keep,
+        email=entry.data[CONF_EMAIL],
+        password=entry.data[CONF_PASSWORD] or None,
+        token=entry.data[CONF_MASTER_TOKEN] or None,
     )
 
     await auth.async_get_access_token()

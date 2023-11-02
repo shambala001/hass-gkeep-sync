@@ -4,14 +4,16 @@
             "already_configured": "Google Keep is already configured"
         },
         "error": {
-            "invalid_credentials": "Invalid email or password.",
+            "credentials_required": "Either a password or master token is required.",
+            "invalid_credentials": "Invalid credentials.",
             "unknown_error": "An unknown error occurred."
         },
         "step": {
             "user": {
                 "data": {
-                    "email": "Email",
+                    "username": "Username",
                     "password": "Password",
+                    "master_token": "Master token",
                     "list_name": "List name"
                 }
             }

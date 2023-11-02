@@ -17,14 +17,15 @@ class AsyncConfigEntryAuth:
         hass: HomeAssistant,
         keep: Keep,
         email: str,
-        password: str,
+        password: str | None = None,
+        token: str | None = None,
     ) -> None:
         """Initialize Google Keep Auth."""
         self._hass = hass
         self._email = email
-        self._password: str | None = password
+        self._password = password
         self._keep = keep
-        self._token: str | None = None
+        self._token = token
 
     async def async_get_access_token(self):
         if not self._token:
