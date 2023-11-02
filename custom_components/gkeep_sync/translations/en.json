@@ -4,7 +4,8 @@
             "already_configured": "Google Keep is already configured"
         },
         "error": {
-            "server_error": "Could not reach Google Keep."
+            "invalid_credentials": "Invalid email or password.",
+            "unknown_error": "An unknown error occurred."
         },
         "step": {
             "user": {
