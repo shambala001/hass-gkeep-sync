@@ -54,34 +54,38 @@ class AsyncConfigEntryAuth:
         keep_notes = await self._hass.async_add_executor_job(lambda: service.all())
 
         for note in keep_notes:
-            if note.type == NodeType.List:
+            if (
+                note.type == NodeType.List
+                and note.title != ""
+                and note.archived is False
+            ):
                 lists.append({"id": note.title, "title": note.title})
 
         _LOGGER.debug("Found %s lists", len(lists))
 
         return lists
 
-    async def list_tasks(self, task_list_id: str) -> list[dict[str, Any]]:
+    async def list_tasks(self, task_list_name: str) -> list[dict[str, Any]]:
         """Get all Task resources for the task list."""
         tasks: list[dict[str, Any]] = []
-        task_list: List = await self._get_or_create_list_name(task_list_id)
+        task_list: List = await self._get_or_create_list_name(task_list_name)
 
         for item in task_list.items:
             tasks.append({"id": item.text, "title": item.text, "status": item.checked})
 
-        _LOGGER.debug("Found %s tasks for list %s", len(tasks), task_list_id)
+        _LOGGER.debug("Found %s tasks for list %s", len(tasks), task_list_name)
 
         return tasks
 
     async def insert(
         self,
-        task_list_id: str,
+        task_list_name: str,
         task: dict[str, Any],
     ) -> None:
         """Add items to a Google Keep list."""
         service = await self._get_service()
 
-        list_to_update = await self._get_or_create_list_name(task_list_id, service)
+        list_to_update = await self._get_or_create_list_name(task_list_name, service)
 
         item = task["title"]
 
@@ -96,17 +100,17 @@ class AsyncConfigEntryAuth:
 
     async def patch(
         self,
-        task_list_id: str,
-        task_id: str,
+        task_list_name: str,
+        task_name: str,
         task: dict[str, Any],
     ) -> None:
         """Update a task resource."""
         service = await self._get_service()
 
-        list_to_update = await self._get_or_create_list_name(task_list_id, service)
+        list_to_update = await self._get_or_create_list_name(task_list_name, service)
 
         for old_item in list_to_update.items:
-            if old_item.text.lower() == task_id.lower():
+            if old_item.text.lower() == task_name.lower():
                 old_item.text = task["title"]
                 old_item.checked = task["status"] or False
                 break
@@ -118,7 +122,9 @@ class AsyncConfigEntryAuth:
     ) -> List:
         """Find the target list amongst all the Keep notes/lists"""
         if service is None:
-            service = self._get_service()
+            service = await self._hass.async_add_executor_job(
+                lambda: self._get_service()
+            )
 
         await self._hass.async_add_executor_job(lambda: service.sync())
 

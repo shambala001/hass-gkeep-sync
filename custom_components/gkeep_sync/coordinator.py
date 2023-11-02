@@ -30,9 +30,9 @@ class TaskUpdateCoordinator(DataUpdateCoordinator[list[dict[str, Any]]]):
             update_interval=UPDATE_INTERVAL,
         )
         self.api = api
-        self._task_list_id = task_list_name
+        self._task_list_name = task_list_name
 
     async def _async_update_data(self) -> list[dict[str, Any]]:
         """Fetch tasks from API endpoint."""
         async with asyncio.timeout(TIMEOUT):
-            return await self.api.list_tasks(self._task_list_id)
+            return await self.api.list_tasks(self._task_list_name)

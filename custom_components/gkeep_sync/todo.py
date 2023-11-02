@@ -48,6 +48,7 @@ async def async_setup_entry(
                 task_list["title"],
                 entry.entry_id,
                 task_list["title"],
+                task_list["id"],
             )
             for task_list in task_lists
         ),
@@ -70,13 +71,14 @@ class GoogleKeepTodoListEntity(
         coordinator: TaskUpdateCoordinator,
         name: str,
         config_entry_id: str,
+        task_list_name: str,
         task_list_id: str,
     ) -> None:
         """Initialize LocalTodoListEntity."""
         super().__init__(coordinator)
         self._attr_name = name.capitalize()
         self._attr_unique_id = f"{config_entry_id}-{task_list_id}"
-        self._task_list_id = task_list_id
+        self._task_list_name = task_list_name
 
     @property
     def todo_items(self) -> list[TodoItem] | None:
@@ -97,7 +99,7 @@ class GoogleKeepTodoListEntity(
     async def async_create_todo_item(self, item: TodoItem) -> None:
         """Add an item to the To-do list."""
         await self.coordinator.api.insert(
-            self._task_list_id,
+            self._task_list_name,
             task=_convert_todo_item(item),
         )
         await self.coordinator.async_refresh()
@@ -106,7 +108,7 @@ class GoogleKeepTodoListEntity(
         """Update a To-do item."""
         uid: str = cast(str, item.uid)
         await self.coordinator.api.patch(
-            self._task_list_id,
+            self._task_list_name,
             uid,
             task=_convert_todo_item(item),
         )
