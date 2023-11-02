@@ -38,7 +38,7 @@ This can be configured fully via the Integrations interface. Click the following
 
 [![Add Integration](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start?domain=gkeep_sync)
 
-You'll need to have your email and [app password](https://support.google.com/accounts/answer/185833), and the name of
+You'll need to have your email and [app password](https://myaccount.google.com/apppasswords), and the name of
 the list to update. The default name is `Shopping List`.
 
 ## Security
