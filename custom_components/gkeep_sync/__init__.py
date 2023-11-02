@@ -10,11 +10,8 @@ from homeassistant.core import HomeAssistant
 
 from . import api
 from .const import (
-    CONF_LIST_NAME,
     DOMAIN,
     DEFAULT_LIST_NAME,
-    SERVICE_LIST_NAME,
-    SERVICE_LIST_ITEMS,
     CONF_MASTER_TOKEN,
 )
 

@@ -9,7 +9,7 @@ from homeassistant.data_entry_flow import FlowResult
 
 import homeassistant.helpers.config_validation as cv
 
-from .const import CONF_LIST_NAME, CONF_MASTER_TOKEN, DEFAULT_LIST_NAME, DOMAIN
+from .const import CONF_LIST_NAME, CONF_MASTER_TOKEN, DOMAIN
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -18,7 +18,6 @@ CONFIG_SCHEMA = vol.Schema(
         vol.Required(CONF_EMAIL): cv.string,
         vol.Optional(CONF_PASSWORD): cv.string,
         vol.Optional(CONF_MASTER_TOKEN): cv.string,
-        vol.Required(CONF_LIST_NAME, default=DEFAULT_LIST_NAME): cv.string,
     }
 )
 

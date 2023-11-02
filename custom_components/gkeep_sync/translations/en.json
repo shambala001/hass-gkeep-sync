@@ -13,8 +13,7 @@
                 "data": {
                     "email": "Email",
                     "password": "Password",
-                    "master_token": "Master token",
-                    "list_name": "List name"
+                    "master_token": "Master token"
                 }
             }
         }

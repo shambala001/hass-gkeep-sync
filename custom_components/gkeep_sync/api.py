@@ -51,9 +51,7 @@ class AsyncConfigEntryAuth:
         service = await self._get_service()
         lists: list[dict[str, Any]] = []
 
-        keep_notes = await self._hass.async_add_executor_job(
-            lambda: service.all()
-        )
+        keep_notes = await self._hass.async_add_executor_job(lambda: service.all())
 
         for note in keep_notes:
             if note.type == NodeType.List:
@@ -94,9 +92,7 @@ class AsyncConfigEntryAuth:
         else:
             list_to_update.add(item, False)
 
-        await self._hass.async_add_executor_job(
-            lambda: service.sync()
-        )
+        await self._hass.async_add_executor_job(lambda: service.sync())
 
     async def patch(
         self,
@@ -115,22 +111,18 @@ class AsyncConfigEntryAuth:
                 old_item.checked = task["status"] or False
                 break
 
-        await self._hass.async_add_executor_job(
-            lambda: service.sync()
-        )
+        await self._hass.async_add_executor_job(lambda: service.sync())
 
-    async def _get_or_create_list_name(self, list_name: str, service: Keep | None = None) -> List:
+    async def _get_or_create_list_name(
+        self, list_name: str, service: Keep | None = None
+    ) -> List:
         """Find the target list amongst all the Keep notes/lists"""
         if service is None:
             service = self._get_service()
 
-        await self._hass.async_add_executor_job(
-            lambda: service.sync()
-        )
+        await self._hass.async_add_executor_job(lambda: service.sync())
 
-        keep_lists = await self._hass.async_add_executor_job(
-            lambda: service.all()
-        )
+        keep_lists = await self._hass.async_add_executor_job(lambda: service.all())
 
         for keep_list in keep_lists:
             if keep_list.title == list_name:
