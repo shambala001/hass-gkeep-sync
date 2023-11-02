@@ -54,9 +54,13 @@ class AsyncConfigEntryAuth:
         keep_lists = await self._hass.async_add_executor_job(
             lambda: service.all()
         )
+
         for note in keep_lists:
             if note.type == "LIST":
                 lists.append({"id": note.title, "title": note.title})
+
+        _LOGGER.debug("Found %s lists", len(lists))
+
         return lists
 
     async def list_tasks(self, task_list_id: str) -> list[dict[str, Any]]:
@@ -66,6 +70,8 @@ class AsyncConfigEntryAuth:
 
         for item in task_list.items:
             tasks.append({"id": item.text, "title": item.text, "status": item.checked})
+
+        _LOGGER.debug("Found %s tasks for list %s", len(tasks), task_list_id)
 
         return tasks
 
