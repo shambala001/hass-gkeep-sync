@@ -37,16 +37,16 @@ class GoogleKeepConfigFlow(ConfigFlow, domain=DOMAIN):
                 try:
                     keep = Keep()
 
-                    if user_input[CONF_MASTER_TOKEN] is not None:
+                    if user_input.get(CONF_MASTER_TOKEN) is not None:
                         await self.hass.async_add_executor_job(
                             lambda: keep.resume(
-                                user_input[CONF_EMAIL], user_input[CONF_MASTER_TOKEN]
+                                user_input[CONF_EMAIL], user_input.get(CONF_MASTER_TOKEN)
                             )
                         )
                     else:
                         await self.hass.async_add_executor_job(
                             lambda: keep.login(
-                                user_input[CONF_EMAIL], user_input[CONF_PASSWORD]
+                                user_input[CONF_EMAIL], user_input.get(CONF_PASSWORD)
                             )
                         )
 
