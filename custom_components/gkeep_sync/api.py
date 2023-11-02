@@ -5,7 +5,7 @@ import logging
 from typing import Any
 
 from gkeepapi import Keep
-from gkeepapi.node import List
+from gkeepapi.node import List, NodeType
 from homeassistant.core import HomeAssistant
 
 _LOGGER = logging.getLogger(__name__)
@@ -51,12 +51,14 @@ class AsyncConfigEntryAuth:
         service = await self._get_service()
         lists: list[dict[str, Any]] = []
 
-        keep_lists = await self._hass.async_add_executor_job(
+        keep_notes = await self._hass.async_add_executor_job(
             lambda: service.all()
         )
 
-        for note in keep_lists:
-            if note.type == "LIST":
+        _LOGGER.debug("Found %s notes", len(keep_notes))
+
+        for note in keep_notes:
+            if note.type == NodeType.List:
                 lists.append({"id": note.title, "title": note.title})
 
         _LOGGER.debug("Found %s lists", len(lists))
