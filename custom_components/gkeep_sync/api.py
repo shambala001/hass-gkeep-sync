@@ -21,19 +21,23 @@ class AsyncConfigEntryAuth:
         token: str | None = None,
     ) -> None:
         """Initialize Google Keep Auth."""
-        if token is not None:
-            keep.resume(email, token)
-
         self._hass = hass
         self._email = email
         self._password = password
         self._keep = keep
         self._token = token
+        self._initialised = False
 
     async def async_get_access_token(self):
-        if not self._token:
-            self._token = self._keep.getMasterToken()
-            self._password = None
+        if not self._initialised:
+            if not self._token:
+                self._keep.login(self._email, self._password)
+                self._token = self._keep.getMasterToken()
+                self._password = None
+            else:
+                self._keep.resume(self._email, self._token)
+
+            self._initialised = True
 
         return self._token
 
