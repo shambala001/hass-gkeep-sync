@@ -1,0 +1,17 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Google Keep is already configured"
+        },
+        "error": {
+            "server_error": "Could not reach Google Keep."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "list_name": "List name"
+                }
+            }
+        }
+    }
+}
