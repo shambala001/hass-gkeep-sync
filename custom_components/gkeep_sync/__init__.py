@@ -32,9 +32,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     auth = api.AsyncConfigEntryAuth(
         hass,
         keep,
-        email=entry.data[CONF_EMAIL],
-        password=entry.data[CONF_PASSWORD] or None,
-        token=entry.data[CONF_MASTER_TOKEN] or None,
+        email=entry.data.get(CONF_EMAIL),
+        password=entry.data.get(CONF_PASSWORD),
+        token=entry.data.get(CONF_MASTER_TOKEN),
     )
 
     await auth.async_get_access_token()
