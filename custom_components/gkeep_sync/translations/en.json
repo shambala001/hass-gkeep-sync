@@ -11,7 +11,7 @@
         "step": {
             "user": {
                 "data": {
-                    "username": "Username",
+                    "email": "Email",
                     "password": "Password",
                     "master_token": "Master token",
                     "list_name": "List name"

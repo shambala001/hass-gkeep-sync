@@ -4,7 +4,7 @@ import logging
 from gkeepapi import Keep
 from gkeepapi.exception import LoginException
 from homeassistant.config_entries import ConfigFlow
-from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, CONF_USERNAME
+from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 from homeassistant.data_entry_flow import FlowResult
 
 import homeassistant.helpers.config_validation as cv
@@ -15,7 +15,7 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 CONFIG_SCHEMA = vol.Schema(
     {
-        vol.Required(CONF_USERNAME): cv.string,
+        vol.Required(CONF_EMAIL): cv.string,
         vol.Optional(CONF_PASSWORD): cv.string,
         vol.Optional(CONF_MASTER_TOKEN): cv.string,
         vol.Required(CONF_LIST_NAME, default=DEFAULT_LIST_NAME): cv.string,
