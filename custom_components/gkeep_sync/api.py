@@ -122,9 +122,7 @@ class AsyncConfigEntryAuth:
     ) -> List:
         """Find the target list amongst all the Keep notes/lists"""
         if service is None:
-            service = await self._hass.async_add_executor_job(
-                lambda: self._get_service()
-            )
+            service = await self._get_service()
 
         await self._hass.async_add_executor_job(lambda: service.sync())
 
