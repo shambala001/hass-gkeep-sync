@@ -21,7 +21,7 @@ PLATFORMS: list[Platform] = [Platform.TODO]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Google Tasks from a config entry."""
+    """Set up Google Keep from a config entry."""
     hass.data.setdefault(DOMAIN, {})
 
     keep: Keep = Keep()
