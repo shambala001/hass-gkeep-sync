@@ -10,6 +10,8 @@
         "step": {
             "user": {
                 "data": {
+                    "email": "Email",
+                    "password": "Password",
                     "list_name": "List name"
                 }
             }
