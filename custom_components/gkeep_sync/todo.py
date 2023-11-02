@@ -47,7 +47,7 @@ async def async_setup_entry(
                 TaskUpdateCoordinator(hass, api, task_list["id"]),
                 task_list["title"],
                 entry.entry_id,
-                task_list["id"],
+                task_list["title"],
             )
             for task_list in task_lists
         ),
