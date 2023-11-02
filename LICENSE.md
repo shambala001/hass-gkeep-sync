@@ -1,6 +1,5 @@
 # The MIT License (MIT)
 
-Copyright (c) 2018 Frank Leone
 Copyright (c) 2022 Owen Voke <development@voke.dev>
 
 >Permission is hereby granted, free of charge, to any person obtaining a copy
