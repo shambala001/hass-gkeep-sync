@@ -21,6 +21,9 @@ class AsyncConfigEntryAuth:
         token: str | None = None,
     ) -> None:
         """Initialize Google Keep Auth."""
+        if token is not None:
+            keep.resume(email, token)
+
         self._hass = hass
         self._email = email
         self._password = password
