@@ -1,11 +1,11 @@
 {
   "domain": "gkeep_sync",
-  "name": "Google Keep (Sync)",
+  "name": "Google Keep (Sync) v2",
   "codeowners": ["@owenvoke"],
   "config_flow": true,
   "documentation": "https://github.com/owenvoke/hass-gkeep-sync",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/owenvoke/hass-gkeep-sync/issues",
   "requirements": ["gkeepapi==0.15.0"],
-  "version": "0.2.0"
+  "version": "0.2.2"
 }
